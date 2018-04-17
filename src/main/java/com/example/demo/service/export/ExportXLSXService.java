@@ -21,23 +21,25 @@ public class ExportXLSXService {
         XSSFSheet sheet = workbook.createSheet("clients");
 
         XSSFRow headerRow = sheet.createRow(0);
-        XSSFRow headerRow1 = sheet.createRow(1);
-        XSSFRow headerRow2 = sheet.createRow(2);
         
         XSSFCell cellNom = headerRow.createCell(0);
         XSSFCell cellPrenom = headerRow.createCell(1);
         
-        XSSFCell cellnom1 = headerRow1.createCell(0);
-        XSSFCell cellprenom1 = headerRow1.createCell(1);
         
         cellNom.setCellValue("Nom");
         cellPrenom.setCellValue("Prenom");
         
-        StringBuilder str = new StringBuilder();
+        int cpt=1;
         
         for (ClientDTO client : clients ) {
-        	cellnom1.setCellValue(client.getNom());
-        	cellprenom1.setCellValue(client.getPrenom());
+        	//création var
+        	XSSFRow Row = sheet.createRow(cpt);
+        	XSSFCell cellPrenom1 = Row.createCell(0);
+        	XSSFCell cellNom1 = Row.createCell(1);
+        	//set valeur
+        	cellPrenom1.setCellValue(client.getPrenom().replaceAll(";", ""));
+        	cellNom1.setCellValue(client.getNom().replaceAll(";", ""));
+        	cpt++;
         }
         
         		
