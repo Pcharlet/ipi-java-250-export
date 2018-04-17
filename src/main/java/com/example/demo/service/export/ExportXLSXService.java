@@ -19,6 +19,8 @@ public class ExportXLSXService {
     public void export(OutputStream os, List<ClientDTO> clients) throws IOException {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("clients");
+        XSSFSheet sheet2 = workbook.createSheet("facture1");
+        XSSFSheet sheet3 = workbook.createSheet("facture2");
 
         XSSFRow headerRow = sheet.createRow(0);
         
@@ -41,6 +43,7 @@ public class ExportXLSXService {
         	cellNom1.setCellValue(client.getNom().replaceAll(";", ""));
         	cpt++;
         }
+        
         
         		
         workbook.write(os);
